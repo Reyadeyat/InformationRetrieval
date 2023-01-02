@@ -41,14 +41,12 @@ public class Citation {
     public Integer citation_end_at;
     public String citation_start_word;
     public String citation_end_word;
-    private transient Connection connection;
     private transient Word start_word;
     private transient Word end_word;
     private transient Integer words_before;
     private transient Integer words_after;
     
     public Citation(Connection jdbc_connection, String phrase_original, SearchingDocument document, Word start_word, Word end_word, Integer words_before, Integer words_after) throws Exception {
-        this.connection = connection;
         this.phrase_original = phrase_original;
         this.document = document;
         this.start_word = start_word;
@@ -67,7 +65,7 @@ public class Citation {
             "ELSE NULL END AS cite_index " +
             "FROM `document_word` " +
             "WHERE `document_word`.`document_id` = ? AND `document_word`.`document_raw_word_index` IN(?, ?)";
-        try (PreparedStatement select_cite_start_end_stmt = connection.prepareStatement(select_cite_start_end)) {
+        try (PreparedStatement select_cite_start_end_stmt = jdbc_connection.prepareStatement(select_cite_start_end)) {
             select_cite_start_end_stmt.setInt(1, cite_start_word_index);
             select_cite_start_end_stmt.setInt(2, cite_end_word_index);
             select_cite_start_end_stmt.setInt(3, document.document_id);
@@ -91,7 +89,7 @@ public class Citation {
         this.citation_start_at = start_word.word_start - cite_block_start;
         this.citation_end_at = end_word.word_start - cite_block_start + end_word.word_length;
         String select_citation = "SELECT `document`.`document_raw_text` FROM `document` WHERE `document_book_id`=? AND `document_id`=?";
-        try (PreparedStatement select_citation_stmt = connection.prepareStatement(select_citation)) {
+        try (PreparedStatement select_citation_stmt = jdbc_connection.prepareStatement(select_citation)) {
             select_citation_stmt.setInt(1, document.document_book_id);
             select_citation_stmt.setInt(2, document.document_id);
             try (ResultSet rs = select_citation_stmt.executeQuery()) {
@@ -112,6 +110,7 @@ public class Citation {
     
     public static ExclusionStrategy getJsonExclusionStrategy() {
         ArrayList<String> expose_field_list = new ArrayList<>();
+        expose_field_list.add("phrase_original");
         expose_field_list.add("document");
         expose_field_list.add("document_id");
         expose_field_list.add("document_name");
