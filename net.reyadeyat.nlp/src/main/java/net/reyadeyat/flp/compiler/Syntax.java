@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2023 Reyadeyat
  *
- * Reyadeyat/NLP is licensed under the
+ * Reyadeyat/FLP is licensed under the
  * BSD 3-Clause "New" or "Revised" License
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * https://reyadeyat.net/NLP.LICENSE  
+ * https://reyadeyat.net/FLP.LICENSE 
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,12 +15,8 @@
  * limitations under the License.
  */
 
-package net.reyadeyat.nlp.information.retrieval.algorithm;
+package net.reyadeyat.flp.compiler;
 
-import net.reyadeyat.nlp.information.retrieval.data.structure.Citation;
-import net.reyadeyat.nlp.information.retrieval.data.structure.Sentence;
-import net.reyadeyat.nlp.information.retrieval.data.structure.Word;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -33,9 +29,22 @@ import java.util.ArrayList;
  * 
  * @since 2023.01.01
  */
-public interface InformationRetreivalAlgorithm {
-    public Boolean isMatch();
-    public ArrayList<ArrayList<Word>> getResultWordList();
-    public ArrayList<Sentence> getResultSentenceList();
-    public ArrayList<Citation> getCitationList(Connection connection) throws Exception;
+public class Syntax {
+    private Operandum operandum;
+    private ArrayList<Operandum> prevOperandums;
+    private ArrayList<Operandum> nextOperandums;
+    
+    public Syntax(Operandum operandum) {
+        this.operandum = operandum;
+        prevOperandums = new ArrayList<Operandum>();
+        nextOperandums = new ArrayList<Operandum>();
+    }
+    
+    public void prviouse(Operandum operandum) {
+        prevOperandums.add(operandum);
+    }
+    
+    public void next(Operandum operandum) {
+        nextOperandums.add(operandum);
+    }
 }

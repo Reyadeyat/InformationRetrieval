@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Reyadeyat
+ * Copyright (C) 2023 Reyadeyat
  *
  * Reyadeyat/NLP is licensed under the
  * BSD 3-Clause "New" or "Revised" License
@@ -25,6 +25,9 @@ import net.reyadeyat.nlp.information.retrieval.data.structure.ParsingDocument;
 import net.reyadeyat.nlp.information.retrieval.parser.InformationRetrievalParser;
 
 /**
+ * 
+ * Description
+ * 
  *
  * @author Mohammad Nabil Mostafa
  * <a href="mailto:code@reyadeyat.net">code@reyadeyat.net</a>
@@ -35,7 +38,7 @@ public class UseCase {
     public static void main(String[] args) {
         try {
             //Connection jdbc_connection = DriverManager.getConnection("jdbc:mysql://localhost:51970/information-retrieval", "root", "123456");
-            Connection jdbc_connection = DriverManager.getConnection("jdbc:mysql://192.168.0.160:63751/information-retrieval", "remote", "Z@r#t^o*29l47)y9a4khr0govobiam");
+            Connection jdbc_connection = DriverManager.getConnection("jdbc:mysql://192.168.0.160:57391/information-retrieval", "remote", "Z@Ibra3zimovitgsh43^@!&%$#@");
             jdbc_connection.setAutoCommit(false);
             
             //////Index Quran

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Reyadeyat
+ * Copyright (C) 2023 Reyadeyat
  *
  * Reyadeyat/NLP is licensed under the
  * BSD 3-Clause "New" or "Revised" License
@@ -18,7 +18,6 @@
 package net.reyadeyat.nlp.json;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -26,6 +25,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
+ * 
+ * Description
+ * 
  *
  * @author Mohammad Nabil Mostafa
  * <a href="mailto:code@reyadeyat.net">code@reyadeyat.net</a>
